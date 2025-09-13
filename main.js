@@ -100,3 +100,31 @@ const products = [
     image: 'https://www.herbolarionavarro.es/media/catalog/product/8/4/8432430010649.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1024&width=1024&canvas=1024:1024'
   }
 ];
+let listContainer = document.getElementById('product-list'); 
+products.forEach(product => { //bucle para crear cada div de productos dentro del HTML
+    const productDiv = document.createElement('div'); //donde voy a meter cada elemento del producto
+    productDiv.className = 'product';
+    const img = document.createElement('img'); //agrego la imagen con el nombre como alt
+    img.src = product.image; 
+    img.alt = product.name;
+    const name = document.createElement('h3'); //nombre del producto
+    name.textContent = product.name;
+    const price = document.createElement('p'); //precio
+    price.textContent = `Price: ${product.price} €`;
+    const stars = document.createElement('p'); //valoraciones
+    stars.textContent = `Rating: ${product.stars} (${product.reviews} reviews)`;
+    const seller = document.createElement('p'); //vendedor
+    seller.textContent = `Seller: ${product.seller}`;
+    const brand = document.createElement('p'); //marca
+    brand.textContent = `Brand: ${product.brand}`;
+    const referencia = document.createElement('p'); //referencias
+    referencia.textContent = `Reference: ${product.Referencia}`;
+    productDiv.appendChild(img);
+    productDiv.appendChild(name);
+    productDiv.appendChild(price);
+    productDiv.appendChild(stars);
+    productDiv.appendChild(seller);
+    productDiv.appendChild(brand);
+    productDiv.appendChild(referencia);
+    listContainer.appendChild(productDiv);
+});
