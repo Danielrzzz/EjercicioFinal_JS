@@ -128,3 +128,49 @@ products.forEach(product => { //bucle para crear cada div de productos dentro de
     productDiv.appendChild(referencia);
     listContainer.appendChild(productDiv);
 });
+
+const header = document.querySelector('header');
+
+const h1 = document.createElement('h1');
+h1.textContent = 'Natures Oils';
+
+const nav = document.createElement('nav');
+['Home', 'Products', 'About', 'Contact'].forEach(text => {
+    const links = document.createElement('a');
+    links.href = '#';
+    links.textContent = text;
+    nav.appendChild(links);
+});
+
+const intro = document.createElement('section');
+intro.id = 'introduction';
+const introText = document.createElement('p');
+introText.textContent = 'A healthy option, for everyone.';
+intro.appendChild(introText);
+
+header.append(h1, nav, intro);
+
+const article = document.querySelector('article');
+const h2 = document.createElement('h2');
+h2.textContent = 'Featured Products';
+
+const featured = document.createElement('div');
+featured.className = 'featured-products';
+featured.innerHTML = `
+<img src="https://www.herbolarionavarro.es/media/catalog/product/a/c/aceite_espinoamarillo_4744183010192_b.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1024&width=1024&canvas=1024:1024"
+         alt="Complejo de Aceites de Espino Amarillo 12ml">
+    <h3>Complejo de Aceites de Espino Amarillo 12ml</h3>
+    <p>Price: 19.99 €</p>
+    <p>Rating: 4.8</p>
+`;
+article.append(h2, featured);
+
+const listConteiner = document.createElement('div');
+listConteiner.id = 'product-list';
+article.appendChild(listConteiner);
+document.body.appendChild(listConteiner);
+
+const footer = document.querySelector('footer');
+const textIntro = document.createElement('p');
+textIntro.textContent = 'Welcome to Natures Oils, your number one source for all natural oil products. &copy; 2025 Natures Oils. All rights reserved.';
+footer.appendChild(textIntro);
