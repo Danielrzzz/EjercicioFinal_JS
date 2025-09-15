@@ -132,7 +132,7 @@ products.forEach(product => { //bucle para crear cada div de productos dentro de
 const header = document.querySelector('header');
 
 const h1 = document.createElement('h1');
-h1.textContent = 'Natures Oils';
+h1.textContent = 'Nature Oils';
 
 const nav = document.createElement('nav');
 ['Home', 'Products', 'About', 'Contact'].forEach(text => {
