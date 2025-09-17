@@ -172,5 +172,5 @@ document.body.appendChild(listConteiner);
 
 const footer = document.querySelector('footer');
 const textIntro = document.createElement('p');
-textIntro.textContent = 'Welcome to Natures Oils, your number one source for all natural oil products. &copy; 2025 Natures Oils. All rights reserved.';
+textIntro.textContent = '© 2025 Natures Oils. All rights reserved.';
 footer.appendChild(textIntro);

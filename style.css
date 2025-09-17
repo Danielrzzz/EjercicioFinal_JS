@@ -39,9 +39,55 @@ header {
     display: flex;
     justify-content: flex-start;
     gap: var(--spacing);
-    padding: 5rem 5rem;
+    padding: 4.5rem 5rem;
     align-items: center;
     background-color: var(--background-color);
     margin-top: 20px;
     flex-wrap: wrap;
+}
+
+#introduction {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    top: 120px;
+    right: 20px;
+    cursor: default;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    gap: var(--spacing);
+    font-size: 1rem;
+    font-weight: lighter;
+    position: absolute;
+    right: 5rem;
+    top: 3rem;
+}
+
+img {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 26rem;
+    max-width: 100%;
+    padding: var(--spacing);
+    border: 8px solid var(--primary-color);
+    text-align: start;
+    box-sizing: border-box;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
+    color: var(--primary-color);
+    background-color: var(--background-color);
+    margin-top: 20px;
+    cursor: default;
 }
