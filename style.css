@@ -116,6 +116,38 @@ nav {
   }
 }
 
+.featured-products {
+    display: flex;
+    align-items: center;            /* centrar verticalmente */
+    justify-content: space-between; /* separar texto e imagen */
+    margin: 2rem auto;              /* centrar horizontal y separar del resto */
+    padding: 2rem;                  /* espacio interno */
+    background-color: var(--background-color);
+    gap: var(--spacing);
+    border: 8px solid var(--primary-color);
+    max-width: 1600px;              /* ancho máximo */
+}
+
+@media (max-width: 768px) {
+  .featured-products {
+    flex-direction: column;       /* apila texto e imagen */
+    max-width: 90%;
+  }
+
+  .featured-products > img {
+    order: 1;
+    width: 80%;
+    margin: var(--spacing) 0;
+  }
+
+  .featured-products > h3,
+  .featured-products > p {
+    order: 2;
+    margin: 0 0 var(--spacing) 0;
+    text-align: center;
+  }
+}
+
 
 
 
