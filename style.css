@@ -75,7 +75,9 @@ nav {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
   gap: 2rem; /* espacio entre productos */
-  padding: 2rem;
+  padding-top: 2rem;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
 }
 
 /* Tarjeta de producto */
@@ -97,7 +99,7 @@ nav {
 /* Hover: efecto de crecimiento */
 .product:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px var(--background-color);
 }
 
 .featured-products img {
@@ -113,6 +115,17 @@ nav {
     line-height: 1.6;
     margin: 0;
     cursor: default;
+}
+
+footer {
+   display: flex;
+    justify-content: flex-start;
+    gap: var(--spacing);
+    padding: 4rem 5rem;
+    align-items: center;
+    background-color: var(--background-color);
+    margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 /* Responsive: en pantallas pequeñas, menos columnas */

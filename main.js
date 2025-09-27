@@ -152,7 +152,7 @@ header.append(h1, nav, intro);
 
 const article = document.querySelector('article');
 const h2 = document.createElement('h2');
-h2.textContent = 'Featured Products';
+h2.textContent = 'Featured Product';
 
 const featured = document.createElement('div');
 featured.className = 'featured-products';
