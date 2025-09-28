@@ -100,32 +100,65 @@ const products = [
     image: 'https://www.herbolarionavarro.es/media/catalog/product/8/4/8432430010649.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1024&width=1024&canvas=1024:1024'
   }
 ];
-let listContainer = document.getElementById('product-list'); 
-products.forEach(product => { //bucle para crear cada div de productos dentro del HTML
-    const productDiv = document.createElement('div'); //donde voy a meter cada elemento del producto
+let listContainer = document.getElementById('product-list');
+
+products.forEach(product => {
+    const productDiv = document.createElement('div');
     productDiv.className = 'product';
-    const img = document.createElement('img'); //agrego la imagen con el nombre como alt
-    img.src = product.image; 
-    img.alt = product.name;
-    const name = document.createElement('h3'); //nombre del producto
-    name.textContent = product.name;
-    const price = document.createElement('p'); //precio
-    price.textContent = `Price: ${product.price} €`;
-    const stars = document.createElement('p'); //valoraciones
-    stars.textContent = `Rating: ${product.stars} (${product.reviews} reviews)`;
-    const seller = document.createElement('p'); //vendedor
-    seller.textContent = `Seller: ${product.seller}`;
-    const brand = document.createElement('p'); //marca
-    brand.textContent = `Brand: ${product.brand}`;
-    const referencia = document.createElement('p'); //referencias
-    referencia.textContent = `Reference: ${product.Referencia}`;
+
+    const img = document.createElement('img');
+    img.src = product.image || '';
+    img.alt = product.name || '';
+
+    const name = document.createElement('h3');
+    name.textContent = product.name || '';
+
+    const price = document.createElement('p');
+    price.textContent = `€ ${product.price?.toFixed(2) || '0.00'}`;
+
+    const seller = document.createElement('p');
+    seller.textContent = product.seller ? `Seller: ${product.seller}` : '';
+
+    const brand = document.createElement('p');
+    brand.textContent = product.brand ? `Brand: ${product.brand}` : '';
+
+    const referencia = document.createElement('p');
+    referencia.textContent = product.Referencia ? `Reference: ${product.Referencia}` : '';
+
+    // Controles: carrito + favorito
+    const controls = document.createElement('div');
+    controls.className = 'product-controls';
+
+    const cartBtn = document.createElement('button');
+    cartBtn.className = 'add-cart-btn';
+    cartBtn.textContent = 'Agregar al carrito';
+    cartBtn.addEventListener('click', () => {
+        // aquí puedes cambiar por la lógica real del carrito
+        alert(`"${product.name}" agregado al carrito.`);
+    });
+
+    const favLabel = document.createElement('label');
+    favLabel.className = 'fav-checkbox';
+    const favInput = document.createElement('input');
+    favInput.type = 'checkbox';
+    favInput.className = 'fav-input';
+    const heartSpan = document.createElement('span');
+    heartSpan.className = 'heart';
+    favLabel.appendChild(favInput);
+    favLabel.appendChild(heartSpan);
+
+    controls.appendChild(cartBtn);
+    controls.appendChild(favLabel);
+
+    // Añadir todo al productDiv
     productDiv.appendChild(img);
     productDiv.appendChild(name);
     productDiv.appendChild(price);
-    productDiv.appendChild(stars);
     productDiv.appendChild(seller);
     productDiv.appendChild(brand);
     productDiv.appendChild(referencia);
+    productDiv.appendChild(controls);
+
     listContainer.appendChild(productDiv);
 });
 
@@ -156,21 +189,80 @@ h2.textContent = 'Featured Product';
 
 const featured = document.createElement('div');
 featured.className = 'featured-products';
-featured.innerHTML = `
-<img src="https://www.herbolarionavarro.es/media/catalog/product/a/c/aceite_espinoamarillo_4744183010192_b.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1024&width=1024&canvas=1024:1024"
-         alt="Complejo de Aceites de Espino Amarillo 12ml">
-    <h3>Complejo de Aceites de Espino Amarillo 12ml</h3>
-    <p>Price: 19.99 €</p>
-    <p>Rating: 4.8</p>
-`;
+const featuredProducts = [
+  {
+    name: 'Complejo de Aceites de Espino Amarillo 12ml',
+    price: 19.99,
+    stars: 4.8,
+    image: 'https://www.herbolarionavarro.es/media/catalog/product/a/c/aceite_espinoamarillo_4744183010192_b.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1024&width=1024&canvas=1024:1024'
+  },
+  {
+    name: 'Aceite esencial de Romero ecológico 30ml',
+    price: 19.99,
+    stars: 5.0,
+    image: 'https://www.herbolarionavarro.es/media/catalog/product/8/4/8432430106748.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1024&width=1024&canvas=1024:1024'
+  },
+  {
+    name: 'Aceite de almendras dulces 500ml',
+    price: 12.99,
+    stars: 4.9,
+    image: 'https://www.herbolarionavarro.es/media/catalog/product/3/2/32304045_1.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=1024&width=1024&canvas=1024:1024'
+  }
+];
 article.append(h2, featured);
 
-const listConteiner = document.createElement('div');
-listConteiner.id = 'product-list';
-article.appendChild(listConteiner);
-document.body.appendChild(listConteiner);
+const featuredContainer = document.createElement('div');
+featuredContainer.className = 'featured-products-carousel';
+
+const img = document.createElement('img');
+const title = document.createElement('h3');
+const price = document.createElement('p');
+const rating = document.createElement('p');
+
+featuredContainer.append(img, title, price, rating);
+
+// Botones de navegación
+const prevBtn = document.createElement('button');
+prevBtn.textContent = '⟨';
+const nextBtn = document.createElement('button');
+nextBtn.textContent = '⟩';
+featuredContainer.append(prevBtn, nextBtn);
+
+article.appendChild(featuredContainer);
+
+let currentIndex = 0;
+
+function showFeaturedProduct(index) {
+  const product = featuredProducts[index];
+  img.src = product.image;
+  img.alt = product.name;
+  title.textContent = product.name;
+  price.textContent = `Price: ${product.price} €`;
+  rating.textContent = `Rating: ${product.stars}`;
+}
+
+showFeaturedProduct(currentIndex);
+
+prevBtn.onclick = () => {
+  currentIndex = (currentIndex - 1 + featuredProducts.length) % featuredProducts.length;
+  showFeaturedProduct(currentIndex);
+};
+
+nextBtn.onclick = () => {
+  currentIndex = (currentIndex + 1) % featuredProducts.length;
+  showFeaturedProduct(currentIndex);
+};
+
+// Carrusel automático cada 4 segundos
+setInterval(() => {
+  nextBtn.click();
+}, 4000);
 
 const footer = document.querySelector('footer');
 const textIntro = document.createElement('p');
-textIntro.textContent = '© 2025 Natures Oils. All rights reserved.';
+textIntro.textContent = 'Creado por Daniel Rodriguez - DAM';
 footer.appendChild(textIntro);
+
+const secondLine = document.createElement('p');
+secondLine.textContent = '© 2025 Natures Oils. All rights reserved.';
+footer.appendChild(secondLine);
